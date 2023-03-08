@@ -31,7 +31,7 @@ then
   rm -rf $DEFAULT_PATH && echo "- ✅ Remove Default path";
 fi
 
-mkdir $DEFAULT_PATH && mkdir $DEFAULT_PATH && echo "- ✅ Created Default path";
+mkdir $DEFAULT_PATH && echo "- ✅ Created Default path";
 
 # CHECK DEFAULT CONTENT
 
