@@ -1,0 +1,16 @@
+#! /bin/bash
+
+./bin/wp-tasks/project-init $1 $2
+./bin/wp-tasks/core-get
+./bin/wp-tasks/scaffold-core $1
+./bin/wp-tasks/fresh-install $1
+
+./bin/wp-tasks/install-default-stack $1
+
+./bin/wp-tasks/update-core $1
+./bin/wp-tasks/update-plugins $1
+./bin/wp-tasks/update-themes $1
+
+./bin/wp-tasks/copy-robots-file $1
+
+./bin/nginx-tasks/register-wp-site $1

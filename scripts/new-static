@@ -1,0 +1,6 @@
+#! /bin/bash
+
+./bin/static-tasks/project-init $1 $2
+./bin/static-tasks/copy-default-page $1
+./bin/static-tasks/copy-robots-file $1
+./bin/nginx-tasks/register-static-site $1

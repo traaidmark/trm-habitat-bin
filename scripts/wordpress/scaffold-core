@@ -1,0 +1,19 @@
+#! /bin/bash
+
+# 1. SCAFFOLD CORE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo "Scaffolding Wordpress Core"
+echo ""
+echo "---"
+echo ""
+
+local_wp_cache_dir="$PWD/www/php8/wp/.wp-cache"
+local_project_dir=$PWD/www/php8/wp/$1.dev.traaidmark.com
+
+[ ! -d $local_project_dir/www ] && cp -r $local_wp_cache_dir $local_project_dir/www && echo "✅ Copied Wordpress core into project!";
+
+echo ""
+echo "---"
+echo ""
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

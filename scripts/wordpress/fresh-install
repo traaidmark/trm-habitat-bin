@@ -1,0 +1,23 @@
+#! /bin/bash
+
+# 1. FRESH INSTALL +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo "Fresh Wordpress Install"
+echo ""
+echo "---"
+echo ""
+
+local_project_dir=$PWD/www/php8/wp/$1.dev.traaidmark.com
+docker_project_dir=./$1.dev.traaidmark.com/www
+
+docker compose run --rm wpcli config create --dbname="clacks-client-wp-$1-db" --dbuser=$CLACKS_DATABASE_USER --dbpass=$CLACKS_DATABASE_PASSWORD --dbhost="clacks-db:3306" --path="$docker_project_dir";
+
+docker compose run --rm wpcli db create --path="$docker_project_dir";
+
+docker compose run --rm wpcli core install --url="http://$1.dev.traaidmark.com" --title="$1" --admin_user="$CLACKS_WP_ADMIN_USER" --admin_password="$CLACKS_WP_ADMIN_PASSWORD" --admin_email="$CLACKS_WP_ADMIN_EMAIL" --skip-email --path="$docker_project_dir";
+
+echo ""
+echo "---"
+echo ""
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

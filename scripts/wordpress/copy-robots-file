@@ -1,0 +1,20 @@
+#! /bin/bash
+
+# 1. SETUP WORK DIRECTORY ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo "Copying Robots File"
+echo ""
+echo "---"
+echo ""
+
+project_dir=./www/php8/wp/$1.dev.traaidmark.com
+
+cp $PWD/assets/robots.txt $project_dir/www/robots.txt;
+
+echo "✅ Copied Robots file"
+
+echo ""
+echo "---"
+echo ""
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
