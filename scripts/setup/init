@@ -24,7 +24,7 @@ echo "-";
 [ ! -d $HABITAT_PATH/logs ] && mkdir $HABITAT_PATH/logs && echo "- ✅ Create logs directory";
 [ ! -d $HABITAT_PATH/nginx ] && mkdir $HABITAT_PATH/nginx && echo "- ✅ Create Nginx directory";
 [ ! -d $HABITAT_PATH/nginx/sites ] && mkdir $HABITAT_PATH/nginx/sites && echo "- ✅ Create Nginx Sites directory";
-[ ! -d $HABITAT_PATH/www ] && mkdir $HABITAT_PATH/www && echo "- ✅ Create www directory";
+[ ! -d $HABITAT_WWW ] && mkdir $HABITAT_WWW && echo "- ✅ Create www directory";
 
 echo ""
 echo "= $TASK_NAME COMPLETE"
