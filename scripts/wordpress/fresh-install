@@ -10,7 +10,7 @@ echo ""
 local_project_dir=$PWD/www/php8/wp/$1.dev.traaidmark.com
 docker_project_dir=./$1.dev.traaidmark.com/www
 
-docker compose run --rm wpcli config create --dbname="clacks-client-wp-$1-db" --dbuser=$CLACKS_DATABASE_USER --dbpass=$CLACKS_DATABASE_PASSWORD --dbhost="clacks-db:3306" --path="$docker_project_dir";
+docker compose run --rm wpcli config create --dbname="trm-client-wp-$1-db" --dbuser=$CLACKS_DATABASE_USER --dbpass=$CLACKS_DATABASE_PASSWORD --dbhost="habitat-db:3306" --path="$docker_project_dir";
 
 docker compose run --rm wpcli db create --path="$docker_project_dir";
 
