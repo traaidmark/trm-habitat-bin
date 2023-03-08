@@ -5,6 +5,8 @@
 TASK_TYPE="NGINX CONFIG";
 TASK_NAME=$DOMAIN;
 
+CONF_PATH="$SYS_HABITAT/nginx/sites/$DOMAIN.conf"
+
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -19,9 +21,9 @@ echo ""
 
 echo "- Check NGINX conf file:";
 echo "-";
-if [ -d $HABITAT_PATH/nginx/sites/$DOMAIN.conf ]
+if [ -d $CONF_PATH ]
 then
-  rm -rf $HABITAT_PATH/nginx/sites/$DOMAIN.conf && echo "- ✅ Removed existing conf file";
+  rm -rf $CONF_PATH && echo "- ✅ Removed existing conf file";
 fi
 
 echo "- Create $DOMAIN conf file:";
@@ -39,7 +41,7 @@ echo "server {
   location / {
     try_files \$uri \$uri/ =404;
   }
-}" > $HABITAT_PATH/nginx/sites/$DOMAIN.conf && echo "- ✅ Created conf file";
+}" > $CONF_PATH && echo "- ✅ Created conf file";
 
 echo ""
 echo "= $TASK_TYPE COMPLETE"
