@@ -1,0 +1,35 @@
+#! /bin/bash
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TASK_TYPE="CREATE";
+TASK_NAME="WORDPRESS CACHE";
+
+WPCLI_CACHE_DIR="_cache";
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo ""
+echo "+"
+echo "+ $TASK_TYPE: $TASK_NAME"
+echo "+"
+echo ""
+
+# # CREATE WORDPRESS CACHE
+
+# docker compose run --rm cli ./wordpress/create-cache;
+
+# # DOWNLOAD WORDPRESS CORE
+
+# docker compose run --rm wpcli core download --path="_cache";
+
+# # SCAFFOLD FILES ACROSS
+
+# docker compose run --rm cli ./wordpress/scaffold-stack;
+
+echo ""
+echo "= $TASK_NAME COMPLETE"
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
