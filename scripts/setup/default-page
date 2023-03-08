@@ -6,8 +6,8 @@ TASK_TYPE="SETUP";
 TASK_NAME="DEFAULT LANDING PAGE";
 
 export DOMAIN="default"
-export DEFAULT_PATH="$HABITAT_WWW/default";
-export DEFAULT_ROOT="$HABITAT_WWW/default/www";
+export DEFAULT_PATH="$HABITAT_PATH/www/default";
+export DEFAULT_ROOT="$HABITAT_PATH/www/default/www";
 
 export DEFAULT_BOX="$HABITAT_BOX/default-page/www";
 
