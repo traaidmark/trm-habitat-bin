@@ -26,19 +26,14 @@ echo ""
 echo "- Checking Default Path:";
 echo "-";
 
-if [ ! -d $DEFAULT_PATH ]
+if [ -d $DEFAULT_PATH ]
 then
-  mkdir $DEFAULT_PATH && mkdir $DEFAULT_PATH && echo "- ✅ Created Default path";
-else
-  echo "- ✅ Default path exists - skipping";
+  rm -rf $DEFAULT_PATH && echo "- ✅ Remove Default path";
 fi
+
+mkdir $DEFAULT_PATH && mkdir $DEFAULT_PATH && echo "- ✅ Created Default path";
 
 # CHECK DEFAULT CONTENT
-
-if [ -d $DEFAULT_ROOT ]
-then
-  rm -rf $DEFAULT_ROOT && echo "- ✅ Remove Default page content";
-fi
 
 cp -r $DEFAULT_BOX $DEFAULT_ROOT && echo "- ✅ Copy Default page content from box";
 
