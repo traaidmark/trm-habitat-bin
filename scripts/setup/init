@@ -1,0 +1,24 @@
+#! /bin/bash
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2.1. SETUP HABITAT DIRS ------------------------------------------------------
+
+echo ""
+echo "+"
+echo "+ SETUP: HABITAT DIRECTORIES"
+echo "+"
+echo ""
+
+[ ! -d $HABITAT_PATH ] && mkdir $HABITAT_PATH && echo "✅ Create Habitat directory";
+[ ! -d $HABITAT_PATH/logs ] && mkdir $HABITAT_PATH/logs && echo "✅ Create logs directory";
+[ ! -d $HABITAT_PATH/nginx ] && mkdir $HABITAT_PATH/nginx && echo "✅ Create Nginx directory";
+[ ! -d $HABITAT_PATH/nginx/sites ] && mkdir $HABITAT_PATH/nginx/sites && echo "✅ Create Nginx Sites directory";
+[ ! -d $HABITAT_WWW ] && mkdir $HABITAT_WWW && echo "✅ Create www directory";
+
+# 2.1. END ---------------------------------------------------------------------
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

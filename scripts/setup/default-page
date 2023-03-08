@@ -1,0 +1,50 @@
+#! /bin/bash
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TASK_TYPE="SETUP";
+TASK_NAME="DEFAULT LANDING PAGE";
+
+export DOMAIN="default"
+export DEFAULT_PATH="$HABITAT_WWW/default";
+export DEFAULT_ROOT="$HABITAT_WWW/default/www";
+
+export DEFAULT_BOX="$HABITAT_BOX/default-page/www";
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo ""
+echo "+"
+echo "+ $TASK_TYPE: $TASK_NAME"
+echo "+"
+echo ""
+
+# CREATE STRUCTURE IF NEEDED
+
+echo "- Checking Default Path:";
+echo "-";
+
+if [ ! -d $DEFAULT_PATH ]
+then
+  mkdir $DEFAULT_PATH && mkdir $DEFAULT_PATH && echo "- ✅ Created Default path";
+else
+  echo "- ✅ Default path exists - skipping";
+fi
+
+# CHECK DEFAULT CONTENT
+
+if [ -d $DEFAULT_ROOT ]
+then
+  rm -rf $DEFAULT_ROOT && echo "- ✅ Remove Default page content";
+fi
+
+cp -r $DEFAULT_BOX $DEFAULT_ROOT && echo "- ✅ Copy Default page content from box";
+
+echo ""
+echo "= $TASK_NAME COMPLETE"
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+./scripts/nginx/register-default-site;
