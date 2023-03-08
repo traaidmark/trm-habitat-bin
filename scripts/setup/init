@@ -1,6 +1,10 @@
 #! /bin/bash
 
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TASK_TYPE="SETUP";
+TASK_NAME="INITIAL STRUCTURE";
+
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -9,15 +13,22 @@
 
 echo ""
 echo "+"
-echo "+ SETUP: HABITAT DIRECTORIES"
+echo "+ $TASK_TYPE: $TASK_NAME"
 echo "+"
 echo ""
 
-[ ! -d $HABITAT_PATH ] && mkdir $HABITAT_PATH && echo "✅ Create Habitat directory";
-[ ! -d $HABITAT_PATH/logs ] && mkdir $HABITAT_PATH/logs && echo "✅ Create logs directory";
-[ ! -d $HABITAT_PATH/nginx ] && mkdir $HABITAT_PATH/nginx && echo "✅ Create Nginx directory";
-[ ! -d $HABITAT_PATH/nginx/sites ] && mkdir $HABITAT_PATH/nginx/sites && echo "✅ Create Nginx Sites directory";
-[ ! -d $HABITAT_WWW ] && mkdir $HABITAT_WWW && echo "✅ Create www directory";
+echo "- Scaffolding paths";
+echo "-";
+
+[ ! -d $HABITAT_PATH ] && mkdir $HABITAT_PATH && echo "- ✅ Create Habitat directory";
+[ ! -d $HABITAT_PATH/logs ] && mkdir $HABITAT_PATH/logs && echo "- ✅ Create logs directory";
+[ ! -d $HABITAT_PATH/nginx ] && mkdir $HABITAT_PATH/nginx && echo "- ✅ Create Nginx directory";
+[ ! -d $HABITAT_PATH/nginx/sites ] && mkdir $HABITAT_PATH/nginx/sites && echo "- ✅ Create Nginx Sites directory";
+[ ! -d $HABITAT_PATH/www ] && mkdir $HABITAT_PATH/www && echo "- ✅ Create www directory";
+
+echo ""
+echo "= $TASK_NAME COMPLETE"
+echo ""
 
 # 2.1. END ---------------------------------------------------------------------
 
