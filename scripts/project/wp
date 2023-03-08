@@ -2,10 +2,10 @@
 
 # 1. SETUP WORK DIRECTORY ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-echo "Creating project for: $1"
-echo ""
-echo "---"
-echo ""
+echo "- Initialize Wordpress project";
+echo "-";
+
+echo "- ✅ Result";
 
 project_dir=./www/php8/wp/$1.dev.traaidmark.com
 

@@ -1,0 +1,53 @@
+#! /bin/bash
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+export WP_PATH="$SYS_WWW/php8/wordpress";
+export WP_CACHE="$WP_PATH/_cache";
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# CHECK WP DIR
+
+echo "- Verify Wordpress folder";
+
+if [ -d $WP_PATH ]
+then
+  echo "-- ✅ Wordpress root folder exists";
+else
+  mkdir $WP_PATH && echo "-- ✅ Create Wordpress root folder";
+fi
+
+# CHECK CACHE DIR
+
+echo "- Verify cache folder";
+
+if [ -d $WP_CACHE ]
+then
+  rm -rf $WP_CACHE && echo "-- ✅ Remove Wordpress cache folder";
+fi
+
+mkdir $WP_CACHE  && echo "-- ✅ Create new Wordpress cache folder";
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# 1. SCAFFOLD CORE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# echo "Scaffolding Wordpress Core"
+# echo ""
+# echo "---"
+# echo ""
+
+# local_wp_cache_dir="$PWD/www/php8/wp/.wp-cache"
+# local_project_dir=$PWD/www/php8/wp/$1.dev.traaidmark.com
+
+# [ ! -d $local_project_dir/www ] && cp -r $local_wp_cache_dir $local_project_dir/www && echo "✅ Copied Wordpress core into project!";
+
+# echo ""
+# echo "---"
+# echo ""
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

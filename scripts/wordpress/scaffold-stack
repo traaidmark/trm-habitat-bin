@@ -1,0 +1,26 @@
+#! /bin/bash
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WP_PATH="$SYS_WWW/php8/wordpress";
+WP_CACHE_DIR="$WP_PATH/_cache";
+
+WP_STACK_THEMES="$SYS_BOX/wordpress/themes";
+WP_STACK_PLUGINS="$SYS_BOX/wordpress/plugins";
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# COPY WP THEMES
+
+echo "- Scaffold default themes & plugins";
+cp -a $WP_STACK_THEMES/. $WP_CACHE_DIR/wp-content/themes  && echo "-- ✅ Copied Wordpress themes from Box";
+cp -a $WP_STACK_PLUGINS/. $WP_CACHE_DIR/wp-content/plugins  && echo "-- ✅ Copied Wordpress plugins from Box";
+
+# CLEAN UP
+
+echo "- Clean up";
+rm -rf $WP_CACHE_DIR/wp-content/plugins/hello.php  && echo "-- ✅ Removed unrequired files from Wordpress cache.";
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
