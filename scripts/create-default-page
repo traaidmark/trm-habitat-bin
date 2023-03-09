@@ -1,15 +1,20 @@
 #! /bin/bash
 
+# Available system vars:
+# WWW="$HOME/data/www"
+# BOX="$HOME/box"
+# SITES="$HOME/data/sites"
+
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 TASK_TYPE="SETUP";
 TASK_NAME="DEFAULT LANDING PAGE";
 
 export DOMAIN="default"
-export DEFAULT_PATH="$SYS_WWW/default";
-export DEFAULT_ROOT="$SYS_WWW/default/www";
+export DEFAULT_PATH="$WWW/default";
+export DEFAULT_ROOT="$WWW/default/www";
 
-export DEFAULT_BOX="$SYS_BOX/default-page/www";
+export DEFAULT_BOX="$BOX/default-page/www";
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
