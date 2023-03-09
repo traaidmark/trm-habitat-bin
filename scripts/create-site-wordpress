@@ -43,6 +43,7 @@ echo "+ $TASK_TYPE: $TASK_NAME"
 echo "+"
 echo "++ Type: $PROJECT_TYPE"
 echo "++ Mode: $PROJECT_MODE"
+[ ! -z $PROJECT_REPO ] && echo "++ Repository Url: $PROJECT_REPO";
 echo "++ Domain: $DOMAIN"
 echo "++ Root: $PROJECT_WWW"
 echo "+"
