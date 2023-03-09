@@ -56,7 +56,7 @@ fi
 
 echo "- Download Wordpress Core";
 
-wp --path="$WP_CACHE" && echo "-- ✅ Downloaded Wordpress core";
+wp core download --path="$WP_CACHE" && echo "-- ✅ Downloaded Wordpress core";
 
 # 2.2. END ---------------------------------------------------------------------
 
