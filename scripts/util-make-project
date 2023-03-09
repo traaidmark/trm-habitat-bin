@@ -41,7 +41,7 @@ then
 
   [ ! -d $PROJECT_PATH ] && mkdir $PROJECT_PATH && echo "- ✅ Create $PROJECT_PATH";
   [ ! -d $DIR_WORKBOOK ] && mkdir $DIR_WORKBOOK && echo "- ✅ Create $DIR_WORKBOOK";
-  [ ! -d $$PROJECT_WWW ] && mkdir $$PROJECT_WWW && echo "- ✅ Create $$PROJECT_WWW";
+  [ ! -d $PROJECT_WWW ] && mkdir $PROJECT_WWW && echo "- ✅ Create $PROJECT_WWW";
   
 else 
   echo "- 🤠 Creating project from new repository";
