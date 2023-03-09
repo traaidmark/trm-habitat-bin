@@ -51,7 +51,6 @@ echo "++ Mode: $PROJECT_MODE"
 [ ! -z $PROJECT_REPO ] && echo "++ Repository Url: $PROJECT_REPO";
 echo "++ Domain: $DOMAIN"
 echo "++ Root: $PROJECT_PATH"
-echo "++ Root: $PROJECT_WWW"
 echo "+"
 echo ""
 
