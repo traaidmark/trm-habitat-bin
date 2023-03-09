@@ -1,0 +1,88 @@
+#! /bin/bash
+
+# Available system vars:
+# WWW="$HOME/data/www"
+# BOX="$HOME/box"
+# SITES="$HOME/data/sites"
+
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TASK_TYPE="CACHE";
+TASK_NAME="WORDPRESS STACK";
+
+WP_PATH="$WWW/php8/wordpress";
+WP_CACHE="$WP_PATH/_cache";
+WP_PLUGINS="$WP_CACHE/wp-content/plugins";
+WP_THEMES="$WP_CACHE/wp-content/themes";
+
+
+BOX_THEMES="$BOX/wordpress/themes";
+BOX_PLUGINS="$BOX/wordpress/plugins";
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo ""
+echo "+"
+echo "+ $TASK_TYPE: $TASK_NAME"
+echo "+"
+echo ""
+
+# 2.1. CREATE WORDPRESS CACHE --------------------------------------------------
+
+# CHECK WP DIR
+
+echo "- Verify Wordpress folder";
+
+if [ -d $WP_PATH ]
+then
+  echo "-- ✅ Wordpress root folder exists";
+else
+  mkdir $WP_PATH && echo "-- ✅ Create Wordpress root folder";
+fi
+
+# CHECK CACHE DIR
+
+echo "- Verify cache folder";
+
+if [ -d $WP_CACHE ]
+then
+  rm -rf $WP_CACHE && echo "-- ✅ Remove Wordpress cache folder";
+fi
+
+mkdir $WP_CACHE  && echo "-- ✅ Create new Wordpress cache folder";
+
+# 2.1. END ---------------------------------------------------------------------
+
+# 2.2. DOWNLOAD CORE -----------------------------------------------------------
+
+echo "- Download Wordpress Core";
+
+wp core download --path="$WP_CACHE" && echo "-- ✅ Downloaded Wordpress core";
+
+# 2.2. END ---------------------------------------------------------------------
+
+# 2.3. COPY STACK --------------------------------------------------------------
+
+# COPY WP THEMES
+
+echo "- Scaffold Wordpress Stack";
+
+cp -r $BOX_THEMES/. $WP_THEMES  && echo "-- ✅ Copied Wordpress themes from Box";
+cp -r $BOX_PLUGINS/. $WP_PLUGINS  && echo "-- ✅ Copied Wordpress plugins from Box";
+
+# 2.3. END ---------------------------------------------------------------------
+
+# 2.4. CLEAN UP ----------------------------------------------------------------
+
+echo "- Clean up";
+rm -rf $WP_THEMES/hello.php  && echo "-- ✅ Removed unrequired files from Wordpress cache.";
+
+# 2.4. END ---------------------------------------------------------------------
+
+echo ""
+echo "= $TASK_NAME COMPLETE"
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
