@@ -1,0 +1,30 @@
+#! /bin/bash
+
+# Available system vars:
+# WWW="$HOME/data/www"
+# BOX="$HOME/box"
+# SITES="$HOME/data/sites"
+
+# $TYPE
+# $TYPE_PATH
+# $DOMAIN
+# $PROJECT_PATH
+# $PROJECT_WWW
+# $PROJECT_MODE
+# $PROJECT_REPO
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DIR_WORKBOOK="$PROJECT_PATH/_workbook";
+DIR_BOX_GENERAL_DEV="$BOX/general/dev";
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo "- Copy Dev robots.txt";
+echo "-";
+
+cp  $DIR_BOX_GENERAL_DEV/robots.txt $PROJECT_WWW/robots.txt && echo "- ✅ Copied Dev robots.txt file";
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
