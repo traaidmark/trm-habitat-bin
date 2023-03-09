@@ -20,8 +20,6 @@ WP_THEMES="$WP_CACHE/wp-content/themes";
 BOX_THEMES="$BOX/wordpress/themes";
 BOX_PLUGINS="$BOX/wordpress/plugins";
 
-
-
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -72,8 +70,8 @@ wp core download --path="$WP_CACHE" && echo "-- ✅ Downloaded Wordpress core";
 
 echo "- Scaffold Wordpress Stack";
 
-cp -a $BOX_THEMES/. $WP_THEMES  && echo "-- ✅ Copied Wordpress themes from Box";
-cp -a $BOX_PLUGINS/. $WP_PLUGINS  && echo "-- ✅ Copied Wordpress plugins from Box";
+cp -r $BOX_THEMES/. $WP_THEMES  && echo "-- ✅ Copied Wordpress themes from Box";
+cp -r $BOX_PLUGINS/. $WP_PLUGINS  && echo "-- ✅ Copied Wordpress plugins from Box";
 
 # 2.3. END ---------------------------------------------------------------------
 
