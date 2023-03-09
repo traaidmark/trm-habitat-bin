@@ -1,0 +1,67 @@
+#! /bin/bash
+
+# Available system vars:
+# WWW="$HOME/data/www"
+# BOX="$HOME/box"
+# SITES="$HOME/data/sites"
+
+# $TYPE
+# $TYPE_PATH
+# $DOMAIN
+# $PROJECT_PATH
+# $PROJECT_WWW
+# $PROJECT_MODE
+# $PROJECT_REPO
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TASK_TYPE="NGINX WORDPRESS CONFIG";
+TASK_NAME=$DOMAIN;
+
+CONF_PATH="$SITES/$DOMAIN.conf"
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2.1. GLOBAL FOLDERS ----------------------------------------------------------
+
+echo "- Registering site on Nginx";
+
+if [ $PROJECT_TYPE = "wordpress" ]
+then
+  echo "- 🤠 Creating wordpress conf file.";
+
+  echo "server {
+    listen 80;
+    listen [::]:80;
+
+    server_name $DOMAIN;
+
+    root /var/www/php8/wp/$DOMAIN/www;
+    index index.php;
+    
+    server_tokens off;
+    
+    location / {
+      # First attempt to serve request as file, then    
+      # as directory, then fall back to displaying a 404.    
+      try_files \$uri \$uri/ /index.php?\$args;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on wordpress:9000  
+    
+    location ~ \.php$ {    
+      fastcgi_split_path_info ^(.+\.php)(/.+)$;
+      fastcgi_pass habitat-php:9000;
+      fastcgi_index index.php;
+      include fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+      fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+    }
+  }" > $CONF_PATH && echo "-- ✅ Created conf file";
+fi
+
+# 2.1. END ---------------------------------------------------------------------
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
