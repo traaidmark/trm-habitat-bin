@@ -1,24 +1,31 @@
 #! /bin/bash
 
 # Available system vars:
-# WWW="$HOME/data/www"
-# BOX="$HOME/box"
-# SITES="$HOME/data/sites"
+# HABITAT_DATABASE_USER
+# HABITAT_DATABASE_PASSWORD
+# HABITAT_DATABASE_ROOT_PASSWORD
 
+# HABITAT_WP_ADMIN_USER
+# HABITAT_WP_ADMIN_PASSWORD
+# HABITAT_WP_ADMIN_EMAIL
+
+# HABITAT_SITES="$HOME/sites"
+# HABITAT_WWW="$HOME/www"
+# HABITAT_BOX="$HOME/.assets/box"
+# HABITAT_CACHE="$HOME/.assets/cache"
 
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 TASK_TYPE="CREATE";
 TASK_NAME="WORDPRESS CACHE";
 
-WP_PATH="$WWW/php8/wordpress";
-WP_CACHE="$WP_PATH/_cache";
+WP_CACHE="$HABITAT_CACHE/wordpress";
 WP_PLUGINS="$WP_CACHE/wp-content/plugins";
 WP_THEMES="$WP_CACHE/wp-content/themes";
 
 
-BOX_THEMES="$BOX/wordpress/themes";
-BOX_PLUGINS="$BOX/wordpress/plugins";
+BOX_THEMES="$HABITAT_BOX/wordpress/themes";
+BOX_PLUGINS="$HABITAT_BOX/wordpress/plugins";
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -34,25 +41,14 @@ echo ""
 
 # CHECK WP DIR
 
-echo "- Verify Wordpress folder";
-
-if [ -d $WP_PATH ]
-then
-  echo "-- ✅ Wordpress root folder exists";
-else
-  mkdir $WP_PATH && echo "-- ✅ Create Wordpress root folder";
-fi
-
-# CHECK CACHE DIR
-
 echo "- Verify cache folder";
 
 if [ -d $WP_CACHE ]
 then
-  rm -rf $WP_CACHE && echo "-- ✅ Remove Wordpress cache folder";
+  echo "-- ✅ Wordpress root folder exists";
+else
+  mkdir $WP_CACHE && echo "-- ✅ Create Wordpress cache folder";
 fi
-
-mkdir $WP_CACHE  && echo "-- ✅ Create new Wordpress cache folder";
 
 # 2.1. END ---------------------------------------------------------------------
 
@@ -60,7 +56,7 @@ mkdir $WP_CACHE  && echo "-- ✅ Create new Wordpress cache folder";
 
 echo "- Download Wordpress Core";
 
-wp core download --path="$WP_CACHE" && echo "-- ✅ Downloaded Wordpress core";
+wp --path="$WP_CACHE" && echo "-- ✅ Downloaded Wordpress core";
 
 # 2.2. END ---------------------------------------------------------------------
 

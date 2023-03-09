@@ -1,9 +1,19 @@
 #! /bin/bash
 
 # Available system vars:
-# WWW="$HOME/data/www"
-# BOX="$HOME/box"
-# SITES="$HOME/data/sites"
+
+# HABITAT_DATABASE_USER
+# HABITAT_DATABASE_PASSWORD
+# HABITAT_DATABASE_ROOT_PASSWORD
+
+# HABITAT_WP_ADMIN_USER
+# HABITAT_WP_ADMIN_PASSWORD
+# HABITAT_WP_ADMIN_EMAIL
+
+# HABITAT_SITES="$HOME/sites"
+# HABITAT_WWW="$HOME/www"
+# HABITAT_BOX="$HOME/.assets/box"
+# HABITAT_CACHE="$HOME/.assets/cache"
 
 
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
