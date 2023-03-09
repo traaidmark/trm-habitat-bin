@@ -5,22 +5,38 @@
 # BOX="$HOME/box"
 # SITES="$HOME/data/sites"
 
+# $TYPE
+# $TYPE_PATH
+# $DOMAIN
+# $PROJECT_PATH
+# $PROJECT_WWW
+# $PROJECT_MODE
+# $PROJECT_REPO
 
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-TASK_TYPE="CACHE";
-TASK_NAME="WORDPRESS STACK";
 
-WP_PATH="$WWW/php8/wordpress";
-WP_CACHE="$WP_PATH/_cache";
-WP_PLUGINS="$WP_CACHE/wp-content/plugins";
-WP_THEMES="$WP_CACHE/wp-content/themes";
-
-
-BOX_THEMES="$BOX/wordpress/themes";
-BOX_PLUGINS="$BOX/wordpress/plugins";
+workbook_dir=./www/php8/wp/$1.dev.traaidmark.com/_workbook
+bin_dir=./www/php8/wp/$1.dev.traaidmark.com/_bin
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2.1. GLOBAL FOLDERS ----------------------------------------------------------
+
+echo "- Create Project";
+echo "-";
+
+if [ $PROJECT_MODE = "local" ]
+then
+  echo "- 🤠 Creating local only project.";
+else 
+  echo "- 🤠 Creating project from new repository";
+fi
+
+echo "- ✅ Result";
+
+# 2.1. END ---------------------------------------------------------------------
+
 # 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

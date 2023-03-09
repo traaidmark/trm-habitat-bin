@@ -8,17 +8,17 @@
 
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-export PROJECT_TYPE="$1"
-export DOMAIN="$2.dev.traaidmark.com"
+export TYPE="$1"
+export TYPE_PATH="$WWW";
 
-export PROJECT_PATH="$WWW";
-
-if [ $PROJECT_TYPE = "wordpress" ]
+if [ $TYPE = "wordpress" ]
 then
-  export PROJECT_PATH="$WWW/php8/wordpress"
+  export TYPE_PATH="$WWW/php8/wordpress"
 fi
 
-export PROJECT_WWW="$DOMAIN/www";
+export DOMAIN="$2.dev.traaidmark.com"
+export PROJECT_PATH="$TYPE_PATH/$DOMAIN/"
+export PROJECT_WWW="$TYPE_PATH/$DOMAIN/www"
 
 if [ -z $3 ]
 then
@@ -29,9 +29,7 @@ else
 fi
 
 TASK_TYPE="CREATE SITE";
-TASK_NAME="[$PROJECT_TYPE] $DOMAIN";
-
-export WWW_PATH="$WWW/php8/wordpress";
+TASK_NAME="[$TYPE] $DOMAIN";
 
 # WP_CACHE="$WP_PATH/_cache";
 # WP_PLUGINS="$WP_CACHE/wp-content/plugins";
@@ -48,17 +46,16 @@ echo ""
 echo "+"
 echo "+ $TASK_TYPE: $TASK_NAME"
 echo "+"
-echo "++ Type: $PROJECT_TYPE"
+echo "++ Type: $TYPE"
 echo "++ Mode: $PROJECT_MODE"
 [ ! -z $PROJECT_REPO ] && echo "++ Repository Url: $PROJECT_REPO";
 echo "++ Domain: $DOMAIN"
+echo "++ Root: $PROJECT_PATH"
 echo "++ Root: $PROJECT_WWW"
 echo "+"
 echo ""
 
 # 2.1. MAKE PROJECT ------------------------------------------------------------
-
-echo $WWW_PATH;
 
 util-make-project;
 
