@@ -38,7 +38,7 @@ then
 
     server_name $DOMAIN;
 
-    root /var/www/php8/wp/$DOMAIN/www;
+    root /var/www/php8/wordpress/$DOMAIN/www;
     index index.php;
     
     server_tokens off;
