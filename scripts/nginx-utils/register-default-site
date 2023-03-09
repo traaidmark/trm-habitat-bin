@@ -5,7 +5,7 @@
 TASK_TYPE="NGINX CONFIG";
 TASK_NAME=$DOMAIN;
 
-CONF_PATH="$SYS_HABITAT/nginx/sites/$DOMAIN.conf"
+CONF_PATH="$SITES/$DOMAIN.conf"
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

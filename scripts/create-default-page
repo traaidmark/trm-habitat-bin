@@ -47,4 +47,6 @@ echo "= $TASK_NAME COMPLETE"
 
 # 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-./nginx-utils/register-default-site;
+hello-world hahahah
+
+nginx-utils/register-default-site;
