@@ -1,0 +1,52 @@
+#! /bin/bash
+
+# Available system vars:
+# WWW="$HOME/data/www"
+# BOX="$HOME/box"
+# SITES="$HOME/data/sites"
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TASK_TYPE="SETUP";
+TASK_NAME="Create Adminer Reverse Proxy";
+
+DOMAIN="db.ops.traaidmark.com"
+CONF_PATH="$SITES/$DOMAIN.conf"
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+echo ""
+echo "+"
+echo "+ $TASK_TYPE: $TASK_NAME"
+echo "+"
+echo ""
+
+# CREATE STRUCTURE IF NEEDED
+
+echo "- Checking Default Path:";
+
+echo "server {
+    listen 80;
+    listen [::]:80;
+
+    server_name $DOMAIN;
+    
+    server_tokens off;
+    
+    location / {
+      proxy_pass http://habitat-adminer:8080;
+    }
+  }" > $CONF_PATH && echo "-- ✅ Created conf file";
+
+echo ""
+echo "= $TASK_NAME COMPLETE"
+
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 3. POST CALLS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+nginx-make-default-site;
+
+# 3. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
