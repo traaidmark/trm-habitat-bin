@@ -62,7 +62,7 @@ util-make-project;
 
 # 2.2. COPY CACHE --------------------------------------------------------------
 
-[ $TYPE = "wordpress" ]util-copy-wordpress-cache;
+[ $TYPE = "wordpress" ] && util-copy-wordpress-cache;
 
 # 2.2. END ---------------------------------------------------------------------
 
