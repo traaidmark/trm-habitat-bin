@@ -28,7 +28,7 @@ CONF_PATH="$SITES/$DOMAIN.conf"
 
 echo "- Registering site on Nginx";
 
-if [ $PROJECT_TYPE = "wordpress" ]
+if [ $TYPE = "wordpress" ]
 then
   echo "- 🤠 Creating wordpress conf file.";
 
