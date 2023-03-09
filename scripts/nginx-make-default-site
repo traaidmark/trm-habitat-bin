@@ -20,14 +20,12 @@ echo ""
 # CREATE STRUCTURE IF NEEDED
 
 echo "- Check NGINX conf file:";
-echo "-";
 if [ -d $CONF_PATH ]
 then
-  rm -rf $CONF_PATH && echo "- ✅ Removed existing conf file";
+  rm -rf $CONF_PATH && echo "-- ✅ Removed existing conf file";
 fi
 
 echo "- Create $DOMAIN conf file:";
-echo "-";
 
 echo "server {
   listen 80;
@@ -41,7 +39,7 @@ echo "server {
   location / {
     try_files \$uri \$uri/ =404;
   }
-}" > $CONF_PATH && echo "- ✅ Created conf file";
+}" > $CONF_PATH && echo "-- ✅ Created conf file";
 
 echo ""
 echo "= $TASK_TYPE COMPLETE"

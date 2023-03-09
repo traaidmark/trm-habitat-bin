@@ -24,24 +24,22 @@ DIR_WORKBOOK="$PROJECT_PATH/_workbook";
 # 2.1. GLOBAL FOLDERS ----------------------------------------------------------
 
 echo "- Verify clean project";
-echo "-";
 
-[ -d $PROJECT_PATH ] && rm -rf $PROJECT_PATH && echo "- ✅ Removed $PROJECT_PATH";
+[ -d $PROJECT_PATH ] && rm -rf $PROJECT_PATH && echo "-- ✅ Removed $PROJECT_PATH";
 
 # 2.1. END ---------------------------------------------------------------------
 
 # 2.1. GLOBAL FOLDERS ----------------------------------------------------------
 
 echo "- Create Project";
-echo "-";
 
 if [ $PROJECT_MODE = "local" ]
 then
   echo "- 🤠 Creating local only project.";
 
-  [ ! -d $PROJECT_PATH ] && mkdir $PROJECT_PATH && echo "- ✅ Create $PROJECT_PATH";
-  [ ! -d $DIR_WORKBOOK ] && mkdir $DIR_WORKBOOK && echo "- ✅ Create $DIR_WORKBOOK";
-  [ ! -d $PROJECT_WWW ] && mkdir $PROJECT_WWW && echo "- ✅ Create $PROJECT_WWW";
+  [ ! -d $PROJECT_PATH ] && mkdir $PROJECT_PATH && echo "-- ✅ Create $PROJECT_PATH";
+  [ ! -d $DIR_WORKBOOK ] && mkdir $DIR_WORKBOOK && echo "-- ✅ Create $DIR_WORKBOOK";
+  [ ! -d $PROJECT_WWW ] && mkdir $PROJECT_WWW && echo "-- ✅ Create $PROJECT_WWW";
   
 else 
   echo "- 🤠 Creating project from new repository";

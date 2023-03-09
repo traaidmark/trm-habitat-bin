@@ -29,18 +29,17 @@ echo ""
 # CREATE STRUCTURE IF NEEDED
 
 echo "- Checking Default Path:";
-echo "-";
 
 if [ -d $DEFAULT_PATH ]
 then
-  rm -rf $DEFAULT_PATH && echo "- ✅ Remove Default path";
+  rm -rf $DEFAULT_PATH && echo "-- ✅ Remove Default path";
 fi
 
-mkdir $DEFAULT_PATH && echo "- ✅ Created Default path";
+mkdir $DEFAULT_PATH && echo "-- ✅ Created Default path";
 
 # CHECK DEFAULT CONTENT
 
-cp -r $DEFAULT_BOX $DEFAULT_ROOT && echo "- ✅ Copy Default page content from box";
+cp -r $DEFAULT_BOX $DEFAULT_ROOT && echo "-- ✅ Copy Default page content from box";
 
 echo ""
 echo "= $TASK_NAME COMPLETE"

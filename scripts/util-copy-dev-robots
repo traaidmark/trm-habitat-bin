@@ -16,19 +16,14 @@
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 DIR_WORKBOOK="$PROJECT_PATH/_workbook";
-DIR_CACHE="$TYPE_PATH/_cache";
+DIR_BOX_GENERAL_DEV="$BOX/general/dev";
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# 2.1. COPY WORDPRESS CACHE ----------------------------------------------------
+echo "- Copy Dev robots.txt";
 
-echo "- Copy Wordpress Cache";
-echo "-";
-
-cp -r $DIR_CACHE/. $PROJECT_WWW/ && echo "- ✅ Copied Wordpress from Cache";
-
-# 2.1. END ---------------------------------------------------------------------
+cp  $DIR_BOX_GENERAL_DEV/robots.txt $PROJECT_WWW/robots.txt && echo "-- ✅ Copied Dev robots.txt file";
 
 # 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
