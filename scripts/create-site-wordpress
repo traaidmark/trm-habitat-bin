@@ -8,11 +8,21 @@
 
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-TASK_TYPE="CACHE";
-TASK_NAME="WORDPRESS STACK";
-
 export PROJECT_TYPE="wordpress"
+export DOMAIN="$1.dev.traaidmark.com"
+export PROJECT_PATH="$WWW/php8/wordpress/$DOMAIN";
+export PROJECT_WWW="$PROJECT_PATH/$DOMAIN/www";
+export PROJECT_REPO="$2"
 
+if [ -z PROJECT_REPO ]
+then
+  export PROJECT_MODE="local"
+else
+  export PROJECT_MODE="repository"
+fi
+
+TASK_TYPE="CREATE SITE";
+TASK_NAME="[WORDPRESS] ";
 
 export WWW_PATH="$WWW/php8/wordpress";
 
@@ -31,6 +41,11 @@ echo ""
 echo "+"
 echo "+ $TASK_TYPE: $TASK_NAME"
 echo "+"
+echo "++ Type: $PROJECT_TYPE"
+echo "++ Mode: $PROJECT_MODE"
+echo "++ Domain: $DOMAIN"
+echo "++ Root: $PROJECT_WWW"
+echo "+"
 echo ""
 
 
@@ -42,6 +57,6 @@ echo "= $TASK_NAME COMPLETE"
 
 # 3. POST CALLS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-nginx-make-wordpress-site;
+# nginx-make-wordpress-site;
 
 # 3. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
