@@ -1,0 +1,26 @@
+#! /bin/bash
+
+# Available system vars:
+# WWW="$HOME/data/www"
+# BOX="$HOME/box"
+# SITES="$HOME/data/sites"
+
+
+# 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TASK_TYPE="CACHE";
+TASK_NAME="WORDPRESS STACK";
+
+WP_PATH="$WWW/php8/wordpress";
+WP_CACHE="$WP_PATH/_cache";
+WP_PLUGINS="$WP_CACHE/wp-content/plugins";
+WP_THEMES="$WP_CACHE/wp-content/themes";
+
+
+BOX_THEMES="$BOX/wordpress/themes";
+BOX_PLUGINS="$BOX/wordpress/plugins";
+
+# 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
