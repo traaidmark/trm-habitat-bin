@@ -26,7 +26,7 @@ DIR_WORKBOOK="$PROJECT_PATH/_workbook";
 echo "- Verify clean project";
 echo "-";
 
-[ ! -d $PROJECT_PATH ] && rm -rf $PROJECT_PATH && echo "- ✅ Removed $PROJECT_PATH";
+[ -d $PROJECT_PATH ] && rm -rf $PROJECT_PATH && echo "- ✅ Removed $PROJECT_PATH";
 
 # 2.1. END ---------------------------------------------------------------------
 
