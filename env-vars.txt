@@ -1,0 +1,22 @@
+export _DATABASE_USER=""
+export _DATABASE_PASSWORD=""
+export _DATABASE_ROOT_PASSWORD=""
+
+export _WP_ADMIN_USER=""
+export _WP_ADMIN_PASSWORD=""
+export _WP_ADMIN_EMAIL=""
+
+
+export _R="/path/to/home/or/something"
+
+export _ROOT_WWW="/Users/adriankirsten/Spaces/traaidmark/habitat/tmpvarwww"
+export _WWW="$_R/www"
+export _WWW_DEV="$_R/www/dev"
+export _WWW_PROD="$_R/www/prod"
+
+export _SITES="$_R/sites"
+export _SITE_CONF="$_R/site-conf"
+
+export _BOX="$_R/.box"
+export _BIN="$_R/.bin"
+export _CACHE="$_R/.cache"

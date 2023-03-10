@@ -1,7 +1,6 @@
 #! /bin/bash
 
 # Available system vars:
-
 # HABITAT_DATABASE_USER
 # HABITAT_DATABASE_PASSWORD
 # HABITAT_DATABASE_ROOT_PASSWORD
@@ -10,15 +9,23 @@
 # HABITAT_WP_ADMIN_PASSWORD
 # HABITAT_WP_ADMIN_EMAIL
 
+
 # HABITAT_SITES="$HOME/sites"
 # HABITAT_WWW="$HOME/www"
 # HABITAT_BOX="$HOME/.assets/box"
+# HABITAT_BIN="$HOME/.assets/bin"
 # HABITAT_CACHE="$HOME/.assets/cache"
 
+# PARAMS:
+# create-site $ENV $STACK $NAME $REPO
+
+# ENV [dev, prod]
+# STACK [static, php, wordpress, drupal]
 
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 export TYPE="$1"
+
 export TYPE_PATH="$WWW";
 
 if [ $TYPE = "wordpress" ]
