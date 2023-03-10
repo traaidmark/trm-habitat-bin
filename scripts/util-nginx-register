@@ -31,13 +31,13 @@ CONF_PATH="$SITES/$DOMAIN"
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-echo "- Register [$TYPE] $DOMAIN in NGINX:";
+echo "- Register [$STACK] $DOMAIN in NGINX:";
 if [ -d $CONF_PATH ]
 then
   rm -rf $CONF_PATH && echo "-- ✅ Removed existing conf file";
 fi
 
-if [ $TYPE = "wordpress" ]
+if [ $STACK = "wordpress" ]
 then
   echo "- 🤠 Creating wordpress conf file.";
 
@@ -47,10 +47,8 @@ then
 
     server_name $DOMAIN;
 
-    root /var/www/$env/wordpress/$DOMAIN/www;
+    root /var/www/$ENV/$STACK/$DOMAIN;
     index index.php;
-    
-    server_tokens off;
     
     location / {
       # First attempt to serve request as file, then    
