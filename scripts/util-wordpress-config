@@ -44,7 +44,7 @@ wp config create --path="$SITE_ROOT" --dbname="trm-client-wp-$NAME-db" --dbuser=
 
 echo "- Backup Wordpress config file";
 
-cp $CONFIG_FILE $BACKUP_FILE && echo "-- ✅ Config backed up to _backups dir"
+cp $CONFIG_FILE $BACKUP_FILE && echo "-- ✅ Config backed up to _backups dir";
 
 # 2.2. END ---------------------------------------------------------------------
 
