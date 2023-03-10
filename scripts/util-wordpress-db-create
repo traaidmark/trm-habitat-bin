@@ -32,7 +32,7 @@
 
 echo "- Create Database";
 
-wp config db create --path="$SITE_ROOT" && echo "-- ✅ Database created";
+wp db create --path="$SITE_ROOT" && echo "-- ✅ Database created";
 
 # 2.1. END ---------------------------------------------------------------------
 
