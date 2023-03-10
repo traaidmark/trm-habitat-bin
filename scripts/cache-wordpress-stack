@@ -1,31 +1,30 @@
 #! /bin/bash
 
 # Available system vars:
-# HABITAT_DATABASE_USER
-# HABITAT_DATABASE_PASSWORD
-# HABITAT_DATABASE_ROOT_PASSWORD
-
-# HABITAT_WP_ADMIN_USER
-# HABITAT_WP_ADMIN_PASSWORD
-# HABITAT_WP_ADMIN_EMAIL
-
-# HABITAT_SITES="$HOME/sites"
-# HABITAT_WWW="$HOME/www"
-# HABITAT_BOX="$HOME/.assets/box"
-# HABITAT_CACHE="$HOME/.assets/cache"
-
+#
+# _WWW="$_R/www"
+# _WWW_DEV="$_R/www/dev"
+# _WWW_PROD="$_R/www/prod"
+#
+# _SITES="$_R/sites"
+# _SITE_CONF="$_R/site-conf"
+#
+# _BOX="$_R/.box"
+# _BIN="$_R/.bin"
+# _CACHE="$_R/.cache"
+#
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-TASK_TYPE="CREATE";
-TASK_NAME="WORDPRESS CACHE";
+TASK_TYPE="CACHE";
+TASK_NAME="Wordpress";
 
-WP_CACHE="$HABITAT_CACHE/wordpress";
+WP_CACHE="$_CACHE/wordpress";
 WP_PLUGINS="$WP_CACHE/wp-content/plugins";
 WP_THEMES="$WP_CACHE/wp-content/themes";
 
 
-BOX_THEMES="$HABITAT_BOX/wordpress/themes";
-BOX_PLUGINS="$HABITAT_BOX/wordpress/plugins";
+BOX_THEMES="$_BOX/wordpress/themes";
+BOX_PLUGINS="$_BOX/wordpress/plugins";
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
