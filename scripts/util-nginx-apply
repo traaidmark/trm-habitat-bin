@@ -16,7 +16,7 @@
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-CONF_PATH="/etc/nginx/conf.d"
+SITES_AVAILABLE="/etc/nginx/sites-available"
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -25,7 +25,7 @@ CONF_PATH="/etc/nginx/conf.d"
 # 2.1. TRANSFER ----------------------------------------------------------------
 
 echo "- Apply configuration to Nginx";
-sudo cp -r $_SITE_CONF/. $CONF_PATH && echo "-- ✅ Copied conf files to Nginx";
+sudo cp -r $_SITE_CONF/. $SITES_AVAILABLE  && echo "-- ✅ Copied conf files to sites-available";
 
 # 2.1. END ---------------------------------------------------------------------
 

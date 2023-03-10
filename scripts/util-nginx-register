@@ -25,7 +25,7 @@
 #
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-CONF_PATH="$SITES/$DOMAIN.conf"
+CONF_PATH="$SITES/$DOMAIN"
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -47,7 +47,7 @@ then
 
     server_name $DOMAIN;
 
-    root /var/www/php8/wordpress/$DOMAIN/www;
+    root /var/www/$env/wordpress/$DOMAIN/www;
     index index.php;
     
     server_tokens off;
