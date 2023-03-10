@@ -1,20 +1,27 @@
 #! /bin/bash
 
 # Available system vars:
-# WWW="$HOME/data/www"
-# BOX="$HOME/box"
-# SITES="$HOME/data/sites"
-
+#
+# _WWW="$_R/www"
+# _WWW_DEV="$_R/www/dev"
+# _WWW_PROD="$_R/www/prod"
+#
+# _SITES="$_R/sites"
+# _SITE_CONF="$_R/site-conf"
+#
+# _BOX="$_R/.box"
+# _BIN="$_R/.bin"
+# _CACHE="$_R/.cache"
+#
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 TASK_TYPE="SETUP";
 TASK_NAME="DEFAULT LANDING PAGE";
 
-export DOMAIN="default"
-export DEFAULT_PATH="$WWW/default";
-export DEFAULT_ROOT="$WWW/default/www";
+_REPO_DEFAULT="git@github.com:traaidmark/default.habitat.traaidmark.com.git"
 
-export DEFAULT_BOX="$BOX/default-page/www";
+export DOMAIN="default"
+export SITE_WWW="$DOMAIN/www";
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -26,28 +33,32 @@ echo "+ $TASK_TYPE: $TASK_NAME"
 echo "+"
 echo ""
 
-# CREATE STRUCTURE IF NEEDED
+# 2.1. CREATE SITE -------------------------------------------------------------
 
-echo "- Checking Default Path:";
+echo "- Create site";
+[ ! -d $_SITES/$DOMAIN ] && git clone $_REPO_DEFAULT $_SITES/$DOMAIN &&  echo "-- ✅ Cloned default page repo";
 
-if [ -d $DEFAULT_PATH ]
-then
-  rm -rf $DEFAULT_PATH && echo "-- ✅ Remove Default path";
-fi
+# 2.1. END ---------------------------------------------------------------------
 
-mkdir $DEFAULT_PATH && echo "-- ✅ Created Default path";
+# 2.2. ADD TO WWW --------------------------------------------------------------
 
-# CHECK DEFAULT CONTENT
+[ ! -d $_WWW/$DOMAIN ] && ln -s $_SITES/$SITE_WWW $_WWW/$DOMAIN  &&  echo "-- ✅ Linked www to server";
 
-cp -r $DEFAULT_BOX $DEFAULT_ROOT && echo "-- ✅ Copy Default page content from box";
+# 2.2. END ---------------------------------------------------------------------
+
+# 2.3. REGISTER SITE -----------------------------------------------------------
+
+./util-nginx-register-default;
+
+# 2.3. END ---------------------------------------------------------------------
+
+# 2.4. RESTART NGINX -----------------------------------------------------------
+
+# ./server-nginx restart;
+
+# 2.4. END ---------------------------------------------------------------------
 
 echo ""
 echo "= $TASK_NAME COMPLETE"
 
 # 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-# 3. POST CALLS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-nginx-make-default-site;
-
-# 3. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
