@@ -25,19 +25,18 @@
 #
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-DIR_META="$_BOX/dev-meta"
-DIR_WORKBOOK="$PROJECT_PATH/_workbook";
-DIR_BOX_GENERAL_DEV="$BOX/general/dev";
+CONFIG_FILE="$SITE_ROOT/wp-config.php"
+BACKUP_FILE="$SITE_PATH/_backups/config/wp-config-dev.php"
 
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# 2.1. GLOBAL FOLDERS ----------------------------------------------------------
+# 2.1. CREATE CONFIG -----------------------------------------------------------
 
-echo "- Apply dev meta";
+echo "- Install Wordpress";
 
-cp -r $DIR_META/. $SITE_ROOT && echo "-- ✅ Copied dev meta files";
+wp core install --path="$SITE_ROOT" --url="http://$DOMAIN" --title="$NAME" --admin_user="$_WP_ADMIN_USER" --admin_password="$_WP_ADMIN_PASSWORD" --admin_email="$_WP_ADMIN_EMAIL" --skip-email && echo "-- ✅ Wordpress Installed";
 
 # 2.1. END ---------------------------------------------------------------------
 

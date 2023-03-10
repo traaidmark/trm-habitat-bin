@@ -1,22 +1,29 @@
 #! /bin/bash
 
 # Available system vars:
-# WWW="$HOME/data/www"
-# BOX="$HOME/box"
-# SITES="$HOME/data/sites"
-
-# $TYPE
-# $TYPE_PATH
-# $DOMAIN
-# $PROJECT_PATH
-# $PROJECT_WWW
-# $PROJECT_MODE
-# $PROJECT_REPO
-
+#
+# _WWW="$_R/www"
+# _WWW_DEV="$_R/www/dev"
+# _WWW_PROD="$_R/www/prod"
+#
+# _SITES="$_R/sites"
+# _SITE_CONF="$_R/site-conf"
+#
+# _BOX="$_R/.box"
+# _BIN="$_R/.bin"
+# _CACHE="$_R/.cache"
+#
+# Available Local Vars
+#
+# ENV="$1"
+# STACK="$2"
+# DOMAIN="$NAME.$ENV.traaidmark.com"
+# SITE_PATH="$_SITES/$DOMAIN"
+# SITE_ROOT="$SITE_PATH/www"
+# SITE_MODE="Local"
+# SITE_REPO="$REPO"
+#
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-TASK_TYPE="NGINX WORDPRESS CONFIG";
-TASK_NAME=$DOMAIN;
 
 CONF_PATH="$SITES/$DOMAIN.conf"
 
@@ -24,9 +31,11 @@ CONF_PATH="$SITES/$DOMAIN.conf"
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# 2.1. GLOBAL FOLDERS ----------------------------------------------------------
-
-echo "- Registering site on Nginx";
+echo "- Register [$TYPE] $DOMAIN in NGINX:";
+if [ -d $CONF_PATH ]
+then
+  rm -rf $CONF_PATH && echo "-- ✅ Removed existing conf file";
+fi
 
 if [ $TYPE = "wordpress" ]
 then
@@ -51,13 +60,14 @@ then
 
     # pass the PHP scripts to FastCGI server listening on wordpress:9000  
     
-    location ~ \.php$ {    
+    location ~ \.php$ {
       fastcgi_split_path_info ^(.+\.php)(/.+)$;
-      fastcgi_pass habitat-php:9000;
+      fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
       fastcgi_index index.php;
       include fastcgi_params;
       fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
       fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+      include snippets/fastcgi-php.conf;
     }
   }" > $CONF_PATH && echo "-- ✅ Created conf file";
 fi
