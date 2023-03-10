@@ -8,8 +8,8 @@ export _WP_ADMIN_EMAIL=""
 
 
 export _R="/path/to/home/or/something"
+export _R_WWW="/var/www"
 
-export _ROOT_WWW="/Users/adriankirsten/Spaces/traaidmark/habitat/tmpvarwww"
 export _WWW="$_R/www"
 export _WWW_DEV="$_R/www/dev"
 export _WWW_PROD="$_R/www/prod"

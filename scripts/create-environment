@@ -2,9 +2,9 @@
 
 # Available system vars:
 #
-# _WWW="$_R/www"
-# _WWW_DEV="$_R/www/dev"
-# _WWW_PROD="$_R/www/prod"
+# _WWW="/var/www"
+# _WWW_DEV="$_R_WWW/dev"
+# _WWW_PROD="$_R_WWW/prod"
 #
 # _SITES="$_R/sites"
 # _SITE_CONF="$_R/site-conf"
@@ -20,6 +20,8 @@ TASK_NAME="Server Environment";
 
 BOX_REPO="git@github.com:traaidmark/trm-habitat-box.git"
 
+NGINX_CONFD="/etc/nginx/conf.d"
+
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -33,7 +35,6 @@ echo ""
 # 2.1. WEB ENV -----------------------------------------------------------------
 
 echo "- Create web environment";
-[ ! -d $_WWW ] && ln -s $_ROOT_WWW $_WWW &&  echo "-- ✅ Created a symlink from www to Habitat";
 [ ! -d $_WWW_DEV ] && mkdir $_WWW_DEV &&  echo "-- ✅ Created dev environment";
 [ ! -d $_WWW_PROD ] && mkdir $_WWW_PROD &&  echo "-- ✅ Created production environment";
 
@@ -43,7 +44,7 @@ echo "- Create web environment";
 
 echo "- Create sites environment";
 [ ! -d $_SITES ] && mkdir $_SITES &&  echo "-- ✅ Created sites environment";
-[ ! -d $_SITE_CONF ] && mkdir $_SITE_CONF &&  echo "-- ✅ Created site config directory";
+[ ! -d $_SITE_CONF ] && ln -s $NGINX_CONFD $_SITE_CONF &&  echo "-- ✅ Created site config directory";
 
 # 2.2. END ---------------------------------------------------------------------
 
