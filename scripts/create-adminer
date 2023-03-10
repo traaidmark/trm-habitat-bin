@@ -37,7 +37,7 @@ echo ""
 # 2.1. CREATE SITE -------------------------------------------------------------
 
 echo "- Create site";
-[ ! -d $_SITES/$DOMAIN ] && cp -r $ADMINER_PATH  && $SITE_PATH echo "-- ✅ Applied adminer to sites";
+[ ! -d $_SITES/$DOMAIN ] && cp -r $ADMINER_PATH $SITE_PATH echo "-- ✅ Applied adminer to sites";
 
 # 2.1. END ---------------------------------------------------------------------
 
