@@ -29,7 +29,7 @@ fi
 
 echo "- Create $DOMAIN conf file:";
 
-echo "server {
+sudo echo "server {
   listen 80;
   listen [::]:80;
 
