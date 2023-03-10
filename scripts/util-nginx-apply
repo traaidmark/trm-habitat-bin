@@ -25,7 +25,7 @@ CONF_PATH="/etc/nginx/conf.d"
 # 2.1. TRANSFER ----------------------------------------------------------------
 
 echo "- Apply configuration to Nginx";
-sudo cp $_SITE_CONF/. $CONF_PATH && echo "-- ✅ Copied conf files to Nginx";
+sudo cp -r $_SITE_CONF/. $CONF_PATH && echo "-- ✅ Copied conf files to Nginx";
 
 # 2.1. END ---------------------------------------------------------------------
 
