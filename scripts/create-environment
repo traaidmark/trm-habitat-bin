@@ -44,7 +44,7 @@ echo "- Create web environment";
 
 echo "- Create sites environment";
 [ ! -d $_SITES ] && mkdir $_SITES &&  echo "-- ✅ Created sites environment";
-[ ! -d $_SITE_CONF ] && ln -s $NGINX_CONFD $_SITE_CONF &&  echo "-- ✅ Created site config directory";
+[ ! -d $_SITE_CONF ] && mkdir $_SITE_CONF &&  echo "-- ✅ Created site config directory";
 
 # 2.2. END ---------------------------------------------------------------------
 
