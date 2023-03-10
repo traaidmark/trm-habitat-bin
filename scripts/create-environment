@@ -36,6 +36,9 @@ echo ""
 
 echo "- Create web environment";
 [ ! -d $_WWW_DEV ] && mkdir $_WWW_DEV &&  echo "-- ✅ Created dev environment";
+[ ! -d $_WWW_DEV/static ] && mkdir $_WWW_DEV/static &&  echo "-- ✅ Created /static directory";
+[ ! -d $_WWW_DEV/wordpress ] && mkdir $_WWW_DEV/wordpress &&  echo "-- ✅ Created /wordpress directory";
+[ ! -d $_WWW_DEV/php ] && mkdir $_WWW_DEV/php &&  echo "-- ✅ Created /php directory";
 [ ! -d $_WWW_PROD ] && mkdir $_WWW_PROD &&  echo "-- ✅ Created production environment";
 
 # 2.1. END ---------------------------------------------------------------------

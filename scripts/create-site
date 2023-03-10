@@ -94,14 +94,15 @@ echo ""
 
 # 2.3. APPLY DEV META ----------------------------------------------------------
 
-# [ $ENV = "dev" ] && ./util-apply-dev-meta;
-# util-copy-dev-robots;
+[ $ENV = "dev" ] && ./util-apply-dev-meta;
 
 # 2.3. END ---------------------------------------------------------------------
 
 # 2.4. WORDPRESS TASKS ---------------------------------------------------------
 
 # CONFIG
+
+./util-wordpress-config
 
 # DATABASE
 

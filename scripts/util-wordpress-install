@@ -24,6 +24,7 @@
 # SITE_REPO="$REPO"
 #
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 DIR_META="$_BOX/dev-meta"
 DIR_WORKBOOK="$PROJECT_PATH/_workbook";
 DIR_BOX_GENERAL_DEV="$BOX/general/dev";
@@ -32,8 +33,12 @@ DIR_BOX_GENERAL_DEV="$BOX/general/dev";
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+# 2.1. GLOBAL FOLDERS ----------------------------------------------------------
+
 echo "- Apply dev meta";
 
 cp -r $DIR_META/. $SITE_ROOT && echo "-- ✅ Copied dev meta files";
+
+# 2.1. END ---------------------------------------------------------------------
 
 # 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
