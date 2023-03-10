@@ -22,7 +22,7 @@
 # SITE_ROOT="$SITE_PATH/www"
 # SITE_MODE="Local"
 # SITE_REPO="$REPO"
-
+#
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 DIR_WORKBOOK="$SITE_PATH/_workbook";
@@ -52,7 +52,7 @@ then
   
 else 
   echo "- 🤠 Creating project from new repository";
-  git clone $PROJECT_REPO $PROJECT_PATH && echo "-- ✅ Cloned site into $SITE_PATH";
+  git clone $SITE_REPO $SITE_PATH && echo "-- ✅ Cloned site into $SITE_PATH";
 fi
 
 # 2.2. END ---------------------------------------------------------------------
@@ -63,39 +63,38 @@ echo "- Scaffold Project Directories";
 
 if [ ! -d $DIR_WORKBOOK ]
 then
-  [ ! -d $DIR_WORKBOOK ] && mkdir $DIR_WORKBOOK && echo "-- ✅ Create $DIR_WORKBOOK";
+  [ ! -d $DIR_WORKBOOK ] && mkdir $DIR_WORKBOOK && touch .gitignore && echo "-- ✅ Create $DIR_WORKBOOK";
 else 
   echo "-- 🤠 $DIR_WORKBOOK exists - skipping";
 fi
-
 
 if [ $STACK = "wordpress" ]
 then
   # ASSETS DIRECTORY
   if [ ! -d $DIR_BACKUPS ]
   then
-  [ ! -d $DIR_BACKUPS ] && mkdir $DIR_BACKUPS && echo "-- ✅ Create $DIR_BACKUPS";
+  [ ! -d $DIR_BACKUPS ] && mkdir $DIR_BACKUPS && touch .gitignore && echo "-- ✅ Create $DIR_BACKUPS";
   else 
   echo "-- 🤠 $DIR_BACKUPS exists - skipping";
   fi
   # ASSETS / DATABASE DIRECTORY
   if [ ! -d $DIR_BACKUPS/db ]
   then
-  [ ! -d $DIR_BACKUPS/db ] && mkdir $DIR_BACKUPS/db && echo "-- ✅ Create $DIR_BACKUPS/db";
+  [ ! -d $DIR_BACKUPS/db ] && mkdir $DIR_BACKUPS/db && touch .gitignore && echo "-- ✅ Create $DIR_BACKUPS/db";
   else 
   echo "-- 🤠 $DIR_BACKUPS/db exists - skipping";
   fi
   # ASSETS / CONF DIRECTORY
   if [ ! -d $DIR_BACKUPS/config ]
   then
-  [ ! -d $DIR_BACKUPS/config ] && mkdir $DIR_BACKUPS/config && echo "-- ✅ Create $DIR_BACKUPS/config";
+  [ ! -d $DIR_BACKUPS/config ] && mkdir $DIR_BACKUPS/config && touch .gitignore && echo "-- ✅ Create $DIR_BACKUPS/config";
   else 
   echo "-- 🤠 $DIR_BACKUPS/config exists - skipping";
   fi
   # ASSETS / MISC DIRECTORY
   if [ ! -d $DIR_BACKUPS/misc ]
   then
-  [ ! -d $DIR_BACKUPS/misc ] && mkdir $DIR_BACKUPS/misc && echo "-- ✅ Create $DIR_BACKUPS/misc";
+  [ ! -d $DIR_BACKUPS/misc ] && mkdir $DIR_BACKUPS/misc && touch .gitignore && echo "-- ✅ Create $DIR_BACKUPS/misc";
   else 
   echo "-- 🤠 $DIR_BACKUPS/misc exists - skipping";
   fi

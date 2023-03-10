@@ -73,7 +73,7 @@ cp -r $BOX_PLUGINS/. $WP_PLUGINS  && echo "-- ✅ Copied Wordpress plugins from 
 # 2.4. CLEAN UP ----------------------------------------------------------------
 
 echo "- Clean up";
-rm -rf $WP_THEMES/hello.php  && echo "-- ✅ Removed unrequired files from Wordpress cache.";
+rm -rf $WP_PLUGINS/hello.php  && echo "-- ✅ Removed unrequired files from Wordpress cache.";
 
 # 2.4. END ---------------------------------------------------------------------
 
