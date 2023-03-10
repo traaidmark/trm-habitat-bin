@@ -1,52 +1,60 @@
 #! /bin/bash
 
 # Available system vars:
-# HABITAT_DATABASE_USER
-# HABITAT_DATABASE_PASSWORD
-# HABITAT_DATABASE_ROOT_PASSWORD
-
-# HABITAT_WP_ADMIN_USER
-# HABITAT_WP_ADMIN_PASSWORD
-# HABITAT_WP_ADMIN_EMAIL
-
-
-# HABITAT_SITES="$HOME/sites"
-# HABITAT_WWW="$HOME/www"
-# HABITAT_BOX="$HOME/.assets/box"
-# HABITAT_BIN="$HOME/.assets/bin"
-# HABITAT_CACHE="$HOME/.assets/cache"
-
-# PARAMS:
-# create-site $ENV $STACK $NAME $REPO
-
-# ENV [dev, prod]
-# STACK [static, php, wordpress, drupal]
-
+#
+# _WWW="$_R/www"
+# _WWW_DEV="$_R/www/dev"
+# _WWW_PROD="$_R/www/prod"
+#
+# _SITES="$_R/sites"
+# _SITE_CONF="$_R/site-conf"
+#
+# _BOX="$_R/.box"
+# _BIN="$_R/.bin"
+# _CACHE="$_R/.cache"
+#
+# CMD: create-site $ENV $STACK $NAME $REPO
+#
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-export TYPE="$1"
+export ENV="$1"
+export STACK="$2"
+export NAME="$3"
+export REPO="$4"
 
-export TYPE_PATH="$WWW";
+# BUILD SITE VARS
 
-if [ $TYPE = "wordpress" ]
+export DOMAIN="$NAME.$ENV.traaidmark.com"
+export SITE_PATH="$_SITES/$DOMAIN"
+export SITE_ROOT="$SITE_PATH/www"
+
+if [ -z $4 ]
 then
-  export TYPE_PATH="$WWW/php8/wordpress"
-fi
-
-export DOMAIN="$2.dev.traaidmark.com"
-export PROJECT_PATH="$TYPE_PATH/$DOMAIN"
-export PROJECT_WWW="$TYPE_PATH/$DOMAIN/www"
-
-if [ -z $3 ]
-then
-  export PROJECT_MODE="local"
+  export SITE_MODE="Local"
 else
-  export PROJECT_REPO="$3"
-  export PROJECT_MODE="repository"
+  export SITE_REPO="$REPO"
+  export SITE_MODE="Repository"
 fi
 
-TASK_TYPE="CREATE SITE";
-TASK_NAME="[$TYPE] $DOMAIN";
+# BUILD ENV VARS
+
+# BUILD STACK VARS
+# # BUILD SITE VARS
+
+# export TYPE_PATH="$WWW";
+
+# if [ $TYPE = "wordpress" ]
+# then
+#   export TYPE_PATH="$WWW/php8/wordpress"
+# fi
+
+# export PROJECT_PATH="$TYPE_PATH/$DOMAIN"
+# export PROJECT_WWW="$TYPE_PATH/$DOMAIN/www"
+
+
+
+TASK_TYPE="CREATE";
+TASK_NAME="[$STACK] $DOMAIN";
 
 # WP_CACHE="$WP_PATH/_cache";
 # WP_PLUGINS="$WP_CACHE/wp-content/plugins";
@@ -63,29 +71,30 @@ echo ""
 echo "+"
 echo "+ $TASK_TYPE: $TASK_NAME"
 echo "+"
-echo "++ Type: $TYPE"
-echo "++ Mode: $PROJECT_MODE"
-[ ! -z $PROJECT_REPO ] && echo "++ Repository Url: $PROJECT_REPO";
+echo "++ Environment: $ENV"
+echo "++ Stack: $STACK"
+echo "++ Site:"
 echo "++ Domain: $DOMAIN"
-echo "++ Root: $PROJECT_PATH"
+echo "++ Mode: $SITE_MODE"
+[ ! -z $SITE_REPO ] && echo "++ Repository Url: $SITE_REPO";
 echo "+"
 echo ""
 
-# 2.1. MAKE PROJECT ------------------------------------------------------------
+# 2.1. CREATE SITE -------------------------------------------------------------
 
-util-make-project;
+./util-create-site;
 
 # 2.1. END ---------------------------------------------------------------------
 
 # 2.2. COPY CACHE --------------------------------------------------------------
 
-[ $TYPE = "wordpress" ] && util-copy-wordpress-cache;
+# [ $TYPE = "wordpress" ] && util-copy-wordpress-cache;
 
 # 2.2. END ---------------------------------------------------------------------
 
 # 2.3. COPY DEV ROBOTS FILE ----------------------------------------------------
 
-util-copy-dev-robots;
+# util-copy-dev-robots;
 
 # 2.3. END ---------------------------------------------------------------------
 
@@ -93,9 +102,3 @@ echo ""
 echo "= $TASK_NAME COMPLETE"
 
 # 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-# 3. POST CALLS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-util-nginx-register;
-
-# 3. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
