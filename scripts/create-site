@@ -63,19 +63,19 @@ echo ""
 
 # 2.1. CREATE SITE -------------------------------------------------------------
 
-util-create-site;
+# util-create-site;
 
 # 2.1. END ---------------------------------------------------------------------
 
 # 2.3. APPLY STACK CACHE -------------------------------------------------------
 
-[ $STACK = "wordpress" ] && util-apply-wordpress-cache;
+# [ $STACK = "wordpress" ] && util-apply-wordpress-cache;
 
 # 2.3. END ---------------------------------------------------------------------
 
 # 2.3. APPLY DEV META ----------------------------------------------------------
 
-[ $ENV = "dev" ] && util-apply-dev-meta;
+# [ $ENV = "dev" ] && util-apply-dev-meta;
 
 # 2.3. END ---------------------------------------------------------------------
 
@@ -83,15 +83,15 @@ util-create-site;
 
 # CONFIG
 
-util-wordpress-config
+# util-wordpress-config
 
 # DATABASE
 
-util-wordpress-db-create
+# util-wordpress-db-create
 
 # INSTALL
 
-util-wordpress-install
+# util-wordpress-install
 
 # 2.4. END ---------------------------------------------------------------------
 
@@ -109,7 +109,7 @@ util-wordpress-install
 
 # 2.7. APPLY TO WWW ------------------------------------------------------------
 
-[ ! -d $WWW_SITE_PATH ] && ln -s $_SITES/$SITE_ROOT $WWW_SITE_PATH  &&  echo "-- ✅ Linked www to server";
+# ln -s $_SITES/$SITE_ROOT $WWW_SITE_PATH  &&  echo "-- ✅ Linked www to server";
 
 # 2.7. END ---------------------------------------------------------------------
 
