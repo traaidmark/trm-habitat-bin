@@ -106,6 +106,8 @@ util-wordpress-config
 
 # DATABASE
 
+util-wordpress-db-create
+
 # INSTALL
 
 # 2.4. END ---------------------------------------------------------------------

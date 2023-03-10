@@ -24,17 +24,16 @@
 # SITE_REPO="$REPO"
 #
 # 1. VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-DIR_META="$_BOX/dev-meta"
-DIR_WORKBOOK="$PROJECT_PATH/_workbook";
-DIR_BOX_GENERAL_DEV="$BOX/general/dev";
-
 # 1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 2. SCRIPT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-echo "- Apply dev meta";
+# 2.1. CREATE DATABASE ---------------------------------------------------------
 
-cp -r $DIR_META/. $SITE_ROOT && echo "-- ✅ Copied dev meta files";
+echo "- Create Database";
+
+wp config db create --path="$SITE_ROOT" && echo "-- ✅ Database created";
+
+# 2.1. END ---------------------------------------------------------------------
 
 # 2. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
