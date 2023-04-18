@@ -36,6 +36,10 @@ else
   export SITE_MODE="Repository"
 fi
 
+# BUILD PROCESS VARS
+
+DIR_META="$_BOX/dev-meta"
+
 # BUILD ENV VARS
 
 TASK_TYPE="CREATE";
@@ -78,21 +82,20 @@ fi
 # 2.1.2. CLONE REPOSITORY
 
 echo "- 🤠 Creating project from new repository";
-  git clone $SITE_REPO $PROJECT_PATH && echo "-- ✅ Cloned site into $PROJECT_PATH";
+  git clone $SITE_REPO $PROJECT_PATH && echo "-- ✅ Cloned site into $PROJECT_PATH!";
 
 # 2.1.2. END
 
+# 2.1.3. TODO: ADD ERROR CHECKING FOR FOLDER STRUCTURE
+# 2.1.3. END
+
 # 2.1. END ---------------------------------------------------------------------
-
-# 2.3. APPLY STACK CACHE -------------------------------------------------------
-
-# [ $STACK = "wordpress" ] && util-apply-wordpress-cache;
-
-# 2.3. END ---------------------------------------------------------------------
 
 # 2.3. APPLY DEV META ----------------------------------------------------------
 
-# [ $ENV = "dev" ] && util-apply-dev-meta;
+echo "- 🤠 Apply dev meta";
+
+cp -r $DIR_META/. $SITE_ROOT && echo "-- ✅ Copied dev meta files";
 
 # 2.3. END ---------------------------------------------------------------------
 
