@@ -44,6 +44,8 @@ BOX_PLUGINS="$_BOX/wordpress/plugins";
 WP_PLUGINS="$SITE_ROOT/wp-content/plugins";
 WP_THEMES="$SITE_ROOT/wp-content/themes";
 
+CONF_PATH="$_SITE_CONF/$DOMAIN"
+
 
 # BUILD ENV VARS
 
@@ -132,7 +134,7 @@ wp db create --path="$SITE_ROOT" && echo "-- ✅ Database created";
 
 # 2.3.4. INSTALL
 
-echo "- Install Wordpress";
+echo "- 🤠 Install Wordpress";
 
 wp core install --path="$SITE_ROOT" --url="http://$DOMAIN" --title="$NAME" --admin_user="$_WP_ADMIN_USER" --admin_password="$_WP_ADMIN_PASSWORD" --admin_email="$_WP_ADMIN_EMAIL" --skip-email && echo "-- ✅ Wordpress Installed";
 
@@ -140,7 +142,7 @@ wp core install --path="$SITE_ROOT" --url="http://$DOMAIN" --title="$NAME" --adm
 
 # 2.3.5. SCAFFOLD
 
-echo "- Scaffold Wordpress Stack";
+echo "- 🤠 Scaffold Wordpress Stack";
 
 cp -r $BOX_THEMES/. $WP_THEMES  && echo "-- ✅ Copied Wordpress themes from Box";
 cp -r $BOX_PLUGINS/. $WP_PLUGINS  && echo "-- ✅ Copied Wordpress plugins from Box";
@@ -149,37 +151,61 @@ wp plugin install autodescription updraftplus host-analyticsjs-local autoptimize
 
 # 2.3.5. END
 
-
-
 # 2.3. END ---------------------------------------------------------------------
 
-# 2.5. BACKUP ------------------------------------------------------------------
+# 2.4. BACKUP ------------------------------------------------------------------
+# 2.4. END ---------------------------------------------------------------------
 
+# 2.5. COMMIT ------------------------------------------------------------------
 
+./util-git-commit "initial project scaffold";
 
 # 2.5. END ---------------------------------------------------------------------
 
-# 2.6. COMMIT ------------------------------------------------------------------
+# 2.6. REGISTER SITE -----------------------------------------------------------
 
-# ./util-git-commit "initial project scaffold";
+# 2.6.1. CLEAN CONF FILE
+
+echo "- 🤠 Register [$STACK] $DOMAIN in NGINX:";
+if [ -d $CONF_PATH ]
+then
+  rm -rf $CONF_PATH && echo "-- ✅ Removed existing conf file";
+fi
+
+echo "server {
+    listen 80;
+    listen [::]:80;
+
+    server_name $DOMAIN;
+
+    root $SITE_ROOT;
+    index index.php;
+    
+    location / {
+      # First attempt to serve request as file, then    
+      # as directory, then fall back to displaying a 404.    
+      try_files \$uri \$uri/ /index.php?\$args;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on wordpress:9000  
+    
+    location ~ \.php$ {
+      fastcgi_split_path_info ^(.+\.php)(/.+)$;
+      fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+      fastcgi_index index.php;
+      include fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+      fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+    }
+  }" > $CONF_PATH && echo "-- ✅ Created conf file";
+
+  sudo cp -r $_SITE_CONF/. $SITES_AVAILABLE  && echo "-- ✅ Copied conf files to sites-available";
+
+# 2.6.1. END
+
+server-nginx restart;
 
 # 2.6. END ---------------------------------------------------------------------
-
-# 2.7. APPLY TO WWW ------------------------------------------------------------
-
-# ln -s $SITE_ROOT $PROJECT_PATH && echo "-- ✅ Linked www to server";
-
-# 2.7. END ---------------------------------------------------------------------
-
-# 2.8. REGISTER SITE -----------------------------------------------------------
-
-# util-nginx-register;
-
-# util-nginx-apply;
-
-# server-nginx restart;
-
-# 2.8. END ---------------------------------------------------------------------
 
 echo ""
 echo "= $TASK_NAME COMPLETE"
