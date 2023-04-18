@@ -45,7 +45,7 @@ WP_PLUGINS="$SITE_ROOT/wp-content/plugins";
 WP_THEMES="$SITE_ROOT/wp-content/themes";
 
 CONF_PATH="$_SITE_CONF/$DOMAIN"
-
+SITES_AVAILABLE="/etc/nginx/sites-available"
 
 # BUILD ENV VARS
 
@@ -158,7 +158,7 @@ wp plugin install autodescription updraftplus host-analyticsjs-local autoptimize
 
 # 2.5. COMMIT ------------------------------------------------------------------
 
-./util-git-commit "initial project scaffold";
+util-git-commit "initial project scaffold";
 
 # 2.5. END ---------------------------------------------------------------------
 
