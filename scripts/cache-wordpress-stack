@@ -70,6 +70,9 @@ echo "- Scaffold Wordpress Stack";
 cp -r $BOX_THEMES/. $WP_THEMES  && echo "-- ✅ Copied Wordpress themes from Box";
 cp -r $BOX_PLUGINS/. $WP_PLUGINS  && echo "-- ✅ Copied Wordpress plugins from Box";
 
+wp plugin install autodescription updraftplus host-analyticsjs-local autoptimize wp-cloudflare-page-cache enable-media-replace better-search-replace custom-post-type-ui --path="$WP_CACHE"  && echo "-- ✅ Installed default plugins";
+
+
 # 2.3. END ---------------------------------------------------------------------
 
 # 2.4. CLEAN UP ----------------------------------------------------------------
