@@ -44,7 +44,9 @@ echo "- Verify cache folder";
 
 if [ -d $WP_CACHE ]
 then
-  echo "-- ✅ Wordpress root folder exists";
+  echo "-- ✅ Wordpress cache folder exists";
+  rm -rf $WP_CACHE && echo "-- ✅ Removed cache folder";
+  mkdir $WP_CACHE && echo "-- ✅ Create Wordpress cache folder";
 else
   mkdir $WP_CACHE && echo "-- ✅ Create Wordpress cache folder";
 fi
