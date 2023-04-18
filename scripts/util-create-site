@@ -34,9 +34,7 @@ DIR_BACKUPS="$SITE_PATH/_backups";
 
 # 2.1. VERIFY SITE -------------------------------------------------------------
 
-echo "- Verify Site dir";
 
-[ -d $SITE_PATH ] && rm -rf $SITE_PATH && echo "-- ✅ Removed $SITE_PATH";
 
 # 2.1. END ---------------------------------------------------------------------
 
@@ -61,12 +59,6 @@ fi
 
 echo "- Scaffold Project Directories";
 
-if [ ! -d $DIR_WORKBOOK ]
-then
-  [ ! -d $DIR_WORKBOOK ] && mkdir $DIR_WORKBOOK && touch .gitignore && echo "-- ✅ Create $DIR_WORKBOOK";
-else 
-  echo "-- 🤠 $DIR_WORKBOOK exists - skipping";
-fi
 
 if [ $STACK = "wordpress" ]
 then

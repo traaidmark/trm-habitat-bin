@@ -25,8 +25,8 @@ export WWW="/var/www/dev/wordpress"
 # BUILD SITE VARS
 
 export DOMAIN="$NAME.$ENV.traaidmark.com"
-export SITE_PATH="$WWW/$DOMAIN"
-export SITE_ROOT="$SITE_PATH/www"
+export PROJECT_PATH="$WWW/$DOMAIN"
+export SITE_ROOT="$PROJECT_PATH/www"
 
 if [ -z $2 ]
 then
@@ -35,9 +35,6 @@ else
   export SITE_REPO="$2"
   export SITE_MODE="Repository"
 fi
-
-
-WWW_SITE_PATH="$_WWW/$ENV/$STACK/$DOMAIN";
 
 # BUILD ENV VARS
 
@@ -64,7 +61,26 @@ echo ""
 
 # 2.1. CREATE SITE -------------------------------------------------------------
 
-# util-create-site;
+# 2.1.1. CLEAN INSTALL
+
+echo "- 🤠 Clean existing installs";
+
+if [ -d $PROJECT_PATH ]
+then
+  rm -rf $PROJECT_PATH && echo "-- ✅ Removed $PROJECT_PATH";
+  
+else 
+  echo "-- ✅ This is a clean install!";
+fi
+
+# 2.1.1. END
+
+# 2.1.2. CLONE REPOSITORY
+
+echo "- 🤠 Creating project from new repository";
+  git clone $SITE_REPO $PROJECT_PATH && echo "-- ✅ Cloned site into $PROJECT_PATH";
+
+# 2.1.2. END
 
 # 2.1. END ---------------------------------------------------------------------
 
@@ -110,7 +126,7 @@ echo ""
 
 # 2.7. APPLY TO WWW ------------------------------------------------------------
 
-# ln -s $SITE_ROOT $WWW_SITE_PATH && echo "-- ✅ Linked www to server";
+# ln -s $SITE_ROOT $PROJECT_PATH && echo "-- ✅ Linked www to server";
 
 # 2.7. END ---------------------------------------------------------------------
 
