@@ -39,6 +39,11 @@ fi
 # BUILD PROCESS VARS
 
 DIR_META="$_BOX/dev-meta"
+BOX_THEMES="$_BOX/wordpress/themes";
+BOX_PLUGINS="$_BOX/wordpress/plugins";
+WP_PLUGINS="$SITE_ROOT/wp-content/plugins";
+WP_THEMES="$SITE_ROOT/wp-content/themes";
+
 
 # BUILD ENV VARS
 
@@ -91,29 +96,62 @@ echo "- 🤠 Creating project from new repository";
 
 # 2.1. END ---------------------------------------------------------------------
 
-# 2.3. APPLY DEV META ----------------------------------------------------------
+# 2.2. APPLY DEV META ----------------------------------------------------------
 
 echo "- 🤠 Apply dev meta";
 
 cp -r $DIR_META/. $SITE_ROOT && echo "-- ✅ Copied dev meta files";
 
+# 2.2. END ---------------------------------------------------------------------
+
+# 2.3. WORDPRESS TASKS ---------------------------------------------------------
+
+# 2.3.1. DOWNLOAD
+
+echo "- 🤠 Download Wordpress Core";
+
+wp core download --path="$SITE_ROOT" && echo "-- ✅ Downloaded Wordpress core";
+
+# 2.3.1. END
+
+# 2.3.2. CREATE CONFIG
+
+echo "- 🤠 Create Wordpress config file";
+
+wp config create --path="$SITE_ROOT" --dbname="trm-client-wp-$NAME-db" --dbuser=$_DATABASE_USER --dbpass=$_DATABASE_PASSWORD --dbhost="localhost" && echo "-- ✅ Config file created";
+
+# 2.3.2. END
+
+# 2.3.3. CREATE DATABASE
+
+echo "- 🤠 Create Database";
+
+wp db create --path="$SITE_ROOT" && echo "-- ✅ Database created";
+
+# 2.3.3. END
+
+# 2.3.4. INSTALL
+
+echo "- Install Wordpress";
+
+wp core install --path="$SITE_ROOT" --url="http://$DOMAIN" --title="$NAME" --admin_user="$_WP_ADMIN_USER" --admin_password="$_WP_ADMIN_PASSWORD" --admin_email="$_WP_ADMIN_EMAIL" --skip-email && echo "-- ✅ Wordpress Installed";
+
+# 2.3.4. END
+
+# 2.3.5. SCAFFOLD
+
+echo "- Scaffold Wordpress Stack";
+
+cp -r $BOX_THEMES/. $WP_THEMES  && echo "-- ✅ Copied Wordpress themes from Box";
+cp -r $BOX_PLUGINS/. $WP_PLUGINS  && echo "-- ✅ Copied Wordpress plugins from Box";
+
+wp plugin install autodescription updraftplus host-analyticsjs-local autoptimize wp-cloudflare-page-cache enable-media-replace better-search-replace custom-post-type-ui --path="$SITE_ROOT"  && echo "-- ✅ Installed default plugins";
+
+# 2.3.5. END
+
+
+
 # 2.3. END ---------------------------------------------------------------------
-
-# 2.4. WORDPRESS TASKS ---------------------------------------------------------
-
-# CONFIG
-
-# util-wordpress-config
-
-# DATABASE
-
-# util-wordpress-db-create
-
-# INSTALL
-
-# util-wordpress-install
-
-# 2.4. END ---------------------------------------------------------------------
 
 # 2.5. BACKUP ------------------------------------------------------------------
 
